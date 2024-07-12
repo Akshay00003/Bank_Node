@@ -5,6 +5,7 @@ const { createSecretToken } = require("../util/AdminToken");
 module.exports.signup = async (req, res, next) => {
   try {
     const { email, password, username, createdAt } = req.body.inputValues;
+
     const existingUser = await Admin.findOne({ email });
     if (existingUser) {
       return res.json({ message: "User already exists" });
@@ -26,7 +27,7 @@ module.exports.signup = async (req, res, next) => {
 
 module.exports.Login = async (req, res, next) => {
   try {
-    const { email, password } = req.body.inputValues;
+    const { email, password } = req.body;
 
     if (!email || !password) {
       return res.json({ message: "All fields are required" });

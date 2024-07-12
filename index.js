@@ -6,6 +6,7 @@ require("dotenv").config();
 const cookieParser=require("cookie-parser")
 const authRoute=require("./Routes/AuthRoute")
 const adminRoute=require('./Routes/AdminRoutes')
+const transRoute=require('./Routes/TransactionRoutes')
 const { MONGO_URL, PORT } = process.env;
 
 mongoose
@@ -31,3 +32,4 @@ app.use(cookieParser())
 app.use(express.json())
 app.use('/', authRoute)
 app.use('/admin', adminRoute)
+app.use('/transaction', transRoute)
